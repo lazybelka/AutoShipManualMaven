@@ -11,7 +11,7 @@ import testOrders.helper.TestHelper;
 public class AutoShipCreatingPage extends TestHelper{
 	
 	static Date date = new Date();
-	static SimpleDateFormat exactDateFormat = new SimpleDateFormat("HH-mm-ss-dd-MM-yyyy");
+	static SimpleDateFormat exactDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 	static String dateStr = exactDateFormat.format(date);
 	
 	public static String autoShipFolderName = new String();
@@ -34,8 +34,8 @@ public class AutoShipCreatingPage extends TestHelper{
 		}
 		else{
 			Date date = new Date();
-			SimpleDateFormat exactDateFormat = new SimpleDateFormat("HH-mm-ss-dd-MM-yyyy");
-			takeScreenShotInFolder("Error_autoship_creating" + exactDateFormat.format(date), ItemDetailsPage.folderName);
+			SimpleDateFormat exactDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			takeScreenShotInFolder("Error_autoship_creating" + exactDateFormat.format(date), OfferOutlookPage.folderName);
 			System.out.println("Getting autoship creating error! Look at screenshot in SKU folder");
 			return false;
 		}
@@ -52,9 +52,9 @@ public class AutoShipCreatingPage extends TestHelper{
 	
 	public AutoShipCreatingPage createAutoshipFolder() {
 		wait(2);
-		autoShipFolderName = exactDateFormat.format(date) + "_" + "Autoship" + "_" + ItemDetailsPage.SKU;
+		autoShipFolderName = "TestResults/" + exactDateFormat.format(date) + "_" + "Autoship" + "_" + ItemDetailsPage.SKU;
 		File createdFolder = new File(autoShipFolderName);
-		createdFolder.mkdir();
+		createdFolder.mkdirs();
 		return this;
 	}
 	

@@ -26,10 +26,8 @@ public class TestOrdersPage extends TestHelper{
 	public TestOrdersPage takeInvoiceNumberAndCustomerId() {
 		waitFor(By.cssSelector("a[href*='https://devtest.acmgaces.com/mattmin_zf/customercard/order/']"));
 		wait(2);
-//		customerId = getText(By.cssSelector("a[href*='https://devtest.acmgaces.com/mattmin_zf/customercard/C']"));
 		customerId = getText(By.id("testCustomerId"));
 		System.out.println("Customer ID is " + customerId);
-//		invoiceNumber = getText(By.cssSelector("a[href*='https://devtest.acmgaces.com/mattmin_zf/customercard/order/']"));
 		invoiceNumber = getText(By.id("testInvoiceNumber"));
 		System.out.println("Invoice number is " + invoiceNumber);
 		
@@ -45,8 +43,8 @@ public class TestOrdersPage extends TestHelper{
 	
 	public TestOrdersPage invoiceNumberErrorProcessing() {
 		Date date = new Date();
-		SimpleDateFormat exactDateFormat = new SimpleDateFormat("HH-mm-ss-dd-MM-yyyy");
-		takeScreenShotInFolder("Error_invoice_number-" + exactDateFormat.format(date), ItemDetailsPage.folderName);
+		SimpleDateFormat exactDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+		takeScreenShotInFolder("Error_invoice_number-" + exactDateFormat.format(date), OfferOutlookPage.folderName);
 		System.out.println("Getting invoice number error! Look at screenshot in SKU folder");
 		
 		return this;

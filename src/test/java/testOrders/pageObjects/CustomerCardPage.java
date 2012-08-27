@@ -30,7 +30,7 @@ public class CustomerCardPage extends TestHelper{
 	}
 
 	public CustomerCardPage isOrderShipped() {
-		wait(3);
+		wait(10);
 		waitFor(By.id("commentID"));
 		String orderStatus = new String();
 		orderStatus = getText(By.cssSelector("label[id*='infoSaleStatus']"));
@@ -48,17 +48,17 @@ public class CustomerCardPage extends TestHelper{
 	public CustomerCardPage takeCustomerCardScreenShoots(){
 		wait(3);
 		waitFor(By.id("commentID"));
-		takeScreenShotInFolder("Order_Info-" + ItemDetailsPage.dateStr, ItemDetailsPage.folderName);
+		takeScreenShotInFolder("Order_Info-" + ItemDetailsPage.dateStr, OfferOutlookPage.folderName);
 		
 		waitFor(By.className("orderinfo_marketing"));
 		click(By.className("orderinfo_marketing"));
 		wait(4);
-		takeScreenShotInFolder("Marketing_Info-" + ItemDetailsPage.dateStr, ItemDetailsPage.folderName);
+		takeScreenShotInFolder("Marketing_Info-" + ItemDetailsPage.dateStr, OfferOutlookPage.folderName);
 		
 		waitFor(By.className("orderinfo_history"));
 		click(By.className("orderinfo_history"));
 		wait(4);
-		takeScreenShotInFolder("Order_History-" + ItemDetailsPage.dateStr, ItemDetailsPage.folderName);
+		takeScreenShotInFolder("Order_History-" + ItemDetailsPage.dateStr, OfferOutlookPage.folderName);
 		
 		waitFor(By.className("orderinfo_general"));
 		click(By.className("orderinfo_general"));
@@ -66,17 +66,17 @@ public class CustomerCardPage extends TestHelper{
 		waitFor(By.className("paymentButton"));
 		click(By.className("paymentButton"));
 		wait(4);
-		takeScreenShotInFolder("Advanced_Payments-" + ItemDetailsPage.dateStr, ItemDetailsPage.folderName);
+		takeScreenShotInFolder("Advanced_Payments-" + ItemDetailsPage.dateStr, OfferOutlookPage.folderName);
 		
 		waitFor(By.className("generalinfo_generalpanel"));
 		click(By.className("generalinfo_generalpanel"));
 		wait(4);
-		takeScreenShotInFolder("General_Panel-" + ItemDetailsPage.dateStr, ItemDetailsPage.folderName);
+		takeScreenShotInFolder("General_Panel-" + ItemDetailsPage.dateStr, OfferOutlookPage.folderName);
 		
 		waitFor(By.className("orderinfo_autoship"));
 		click(By.className("orderinfo_autoship"));
 		wait(4);
-		takeScreenShotInFolder("Auto_Ship-" + ItemDetailsPage.dateStr, ItemDetailsPage.folderName);
+		takeScreenShotInFolder("Auto_Ship-" + ItemDetailsPage.dateStr, OfferOutlookPage.folderName);
 		
 		return this;
 	}
@@ -91,7 +91,7 @@ public class CustomerCardPage extends TestHelper{
 		}
 		wait(5);
 		try {
-			fileMigration("PackingSlip.pdf",path + "/PackingSlip.pdf"); //ItemDetailsPage.folderName 
+			fileMigration("PackingSlip.pdf",path + "/PackingSlip.pdf");
 		}
 		catch(FileNotFoundException e){
 			System.out.println("File not found!");
@@ -139,6 +139,20 @@ public class CustomerCardPage extends TestHelper{
 		click(By.className("orderinfo_autoship"));
 		wait(4);
 		takeScreenShotInFolder("Autoship-" + "Auto_Ship-" + ItemDetailsPage.dateStr, AutoShipCreatingPage.autoShipFolderName);
+		return this;
+	}
+	
+	public CustomerCardPage returnToCustomerCardPage() {
+		wait(10);
+		open(customerCardPage + "order/" + TestOrdersPage.invoiceNumber);
+		
+		return this;
+	}
+	
+	public CustomerCardPage returnToNewCustomerCardPage() {
+		wait(10);
+		open(customerCardPage + "order/" + CustomerCardPage.autoShipInvoiceNumber);
+		
 		return this;
 	}
 

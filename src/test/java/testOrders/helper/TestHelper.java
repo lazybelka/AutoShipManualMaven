@@ -45,7 +45,7 @@ public class TestHelper extends Framework{
 	public void getDriver(){
 		
 		ProfilesIni allProfiles = new ProfilesIni();
-		FirefoxProfile profile = allProfiles.getProfile("ACMG");
+		FirefoxProfile profile = allProfiles.getProfile("autoShip");
 		
 		driver = new FirefoxDriver(profile);
 		driver.get(TestHelper.logInPage);

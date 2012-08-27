@@ -6,6 +6,7 @@ import testOrders.helper.TestHelper;
 import testOrders.pageObjects.AutoShipCreatingPage;
 import testOrders.pageObjects.ItemDetailsPage;
 import testOrders.pageObjects.MattminLogIn;
+import testOrders.pageObjects.OfferOutlookPage;
 import testOrders.pageObjects.TestOrdersPage;
 
 public class TestManualSku extends TestHelper{
@@ -17,9 +18,10 @@ public class TestManualSku extends TestHelper{
 		.clickHereToContinue()
 		.openItemsPage() 
 		.enterSKU() //MST-BALM-25ML-30-C
-		.takeSKUAndCreateFolder()
+		.takeSKU()
 		.isAutoShip()
 		.openOfferOutlookPage()
+		.createSKUFolder(ItemDetailsPage.SKU)
 		.saveOfferOutlookPage()
 		.openTestOrdersPage()
 		.fillTestValues()
@@ -32,12 +34,13 @@ public class TestManualSku extends TestHelper{
 			new TestOrdersPage()
 			.takeInvoiceNumberAndCustomerId()
 			.openCustomerCardPage()
-			.takeCustomerCardScreenShoots()
 			.takeOrderNumber()
 			.shipOrder()
 			.returnToCustomerCardPage()
 			.isOrderShipped()
-			.saveViewPackingPage(ItemDetailsPage.folderName);
+			.takeCustomerCardScreenShoots()
+			.returnToCustomerCardPage()
+			.saveViewPackingPage(OfferOutlookPage.folderName);
 			
 			if (ItemDetailsPage.isAuto){
 				new AutoShipCreatingPage()
@@ -48,10 +51,11 @@ public class TestManualSku extends TestHelper{
 					.returnToCustomerCardPage()
 					.takeAutoShipInvoiceNumber()
 					.takeOrderNumber()
-					.takeAutoshipScreenShoots()
 					.shipOrder()
 					.returnToNewCustomerCardPage()
 					.isOrderShipped()
+					.takeAutoshipScreenShoots()
+					.returnToNewCustomerCardPage()
 					.saveViewPackingPage(AutoShipCreatingPage.autoShipFolderName)
 					
 					;
